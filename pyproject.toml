@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nb"
-version = "0.1.0"
-description = "NanoBanana CLI for image generation"
+version = "0.8.0"
+description = "NanoBanana CLI and Comic Factory production suite"
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
@@ -14,3 +14,4 @@ dependencies = [
 
 [project.scripts]
 nb = "nb.main:main"
+comic-factory = "nb.factory:main"
