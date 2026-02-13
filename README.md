@@ -1,41 +1,38 @@
-# nb (NanoBanana) 🍌
+# nb & Comic Factory 🍌🏭
 
 [![CI](https://github.com/nycdubliner/nb/actions/workflows/ci.yml/badge.svg)](https://github.com/nycdubliner/nb/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**nb** is a dedicated CLI tool for Google's official GenAI Image Generation models. 
+**nb** is a production suite for high-quality AI-generated comics. It includes a streamlined image generator (\`nb\`) and a story-agnostic production pipeline (\`comic-factory\`).
 
-## 💰 50% Batch Discount
+## ✨ Features
 
-Save costs by using the asynchronous **Batch API**. This allows you to submit a list of prompts and get a 50% discount on supported models (e.g., \`gemini-2.5-flash-image\`).
+- **nb CLI:** Direct interface for Google's official GenAI Image models.
+- **comic-factory:** A full-issue production engine with batch-processing support.
+- **Economical Pipeline:** Automatically leverages the 50% Batch API discount.
+- **Flexible Layouts:** Grid-based HTML/CSS composition with SVG lettering.
 
 ## 🚀 Installation
 
 \`\`\`bash
+git clone https://github.com/nycdubliner/nb.git
+cd nb
 pip install .
 \`\`\`
 
-## 🛠 Usage
+## 🏭 Using Comic Factory
 
-### ⚡ Immediate Generation (Online)
+Initialize a new project:
 \`\`\`bash
-nb gen "A neon-noir cityscape" --count 4
+mkdir my-comic && cd my-comic
+comic-factory init
 \`\`\`
 
-### ⏳ Batch Generation (50% Discount)
-1. Create a file \`prompts.txt\` with one prompt per line.
-2. Submit the job:
-   \`\`\`bash
-   nb batch prompts.txt
-   \`\`\`
-3. Check status:
-   \`\`\`bash
-   nb batch-status jobs/YOUR_JOB_ID
-   \`\`\`
-
-## ⚙️ Configuration
-
-Set your \`GEMINI_API_KEY\` as an environment variable.
+Run the production loop:
+1. \`comic-factory render\` (Parallel Batch Generation)
+2. \`comic-factory compose\` (HTML Composition)
+3. \`comic-factory rasterize\` (Headless Rasterization)
+4. \`comic-factory package\` (CBZ Packaging)
 
 ## 📄 License
 
