@@ -109,8 +109,8 @@ def submit_batch(prompts_file, model="gemini-2.5-flash-image", api_key=None):
             model=model,
             src=types.BatchJobSource(inlined_requests=inlined_requests)
         )
-        logger.info(f"Batch job submitted successfully! ID: {batch_job.name}")
-        logger.info(f"Check status with: nb batch-status {batch_job.name}")
+        print(batch_job.name)
+        logger.info(f"Batch job submitted successfully!")
         return batch_job.name
     except Exception as e:
         logger.error(f"Failed to submit batch job: {e}")
