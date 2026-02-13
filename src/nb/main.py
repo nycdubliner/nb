@@ -5,7 +5,7 @@ import sys
 import logging
 from pathlib import Path
 
-__version__ = "0.5.0"
+__version__ = "0.6.0"
 
 # Setup logging
 logging.basicConfig(
@@ -22,10 +22,10 @@ except ImportError:
     logger.error("Missing dependencies. Please ensure 'google-genai' is installed.")
     sys.exit(1)
 
-def generate_images(prompt, count=1, styles=None, variations=None, aspect_ratio="2:3", output_dir="nanobanana-output", model="nanabanana-pro", api_key=None):
+def generate_images(prompt, count=1, styles=None, variations=None, aspect_ratio="2:3", output_dir="nanobanana-output", model="imagen-4.0-generate-001", api_key=None):
     """
     Core function to generate images using the specified model.
-    Defaults to 'nanabanana-pro'.
+    Defaults to 'imagen-4.0-generate-001'.
     """
     if not api_key:
         api_key = os.environ.get("GEMINI_API_KEY")
@@ -94,12 +94,12 @@ def generate_images(prompt, count=1, styles=None, variations=None, aspect_ratio=
 def main():
     parser = argparse.ArgumentParser(description="nb (NanoBanana) CLI: Google GenAI Image Generation.")
     parser.add_argument("prompt", nargs="?", help="The text prompt for image generation.")
-    parser.add_argument("--count", type=int, default=1, help="Number of images to generate (1-4).")
+    parser.add_argument("--count", type=int, default=1, help="Number of images to generate (default: 1).")
     parser.add_argument("--styles", nargs="+", help="Artistic styles to apply.")
     parser.add_argument("--variations", nargs="+", help="Variation types to implement.")
     parser.add_argument("--aspect_ratio", default="2:3", help="Aspect ratio (1:1, 9:16, 16:9, 4:3, 3:4).")
     parser.add_argument("--output", default="nanobanana-output", help="Output directory.")
-    parser.add_argument("--model", default="nanabanana-pro", help="Google model name (default: nanabanana-pro).")
+    parser.add_argument("--model", default="imagen-4.0-generate-001", help="Google model name (default: imagen-4.0-generate-001).")
     parser.add_argument("--api-key", help="Gemini API Key.")
     parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     parser.add_argument("--verbose", action="store_true", help="Enable debug logging.")
