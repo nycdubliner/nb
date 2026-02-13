@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nb"
+version = "0.1.0"
+description = "NanoBanana CLI for image generation"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "google-genai",
+]
+
+[project.scripts]
+nb = "nb.main:main"
