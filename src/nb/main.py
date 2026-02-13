@@ -5,7 +5,7 @@ import sys
 import logging
 from pathlib import Path
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 # Setup logging
 logging.basicConfig(
@@ -15,6 +15,13 @@ logging.basicConfig(
 )
 logger = logging.getLogger("nb")
 
+# Model Mapping
+# These map the friendly "NanoBanana" names to the underlying Imagen model strings.
+MODEL_MAPPING = {
+    "nanabanana": "imagen-4.0-generate-001",
+    "nanabanana-pro": "imagen-4.0-generate-001" # Assuming Pro currently points to the same high-end model or a variation
+}
+
 try:
     from google import genai
     from google.genai import types
@@ -22,7 +29,7 @@ except ImportError:
     logger.error("Missing dependencies. Please ensure 'google-genai' is installed.")
     sys.exit(1)
 
-def generate_images(prompt, count=1, styles=None, variations=None, aspect_ratio="2:3", output_dir="nanobanana-output", model="imagen-4.0-generate-001", api_key=None):
+def generate_images(prompt, count=1, styles=None, variations=None, aspect_ratio="2:3", output_dir="nanobanana-output", model="nanabanana", api_key=None):
     if not api_key:
         api_key = os.environ.get("GEMINI_API_KEY")
     
@@ -30,6 +37,9 @@ def generate_images(prompt, count=1, styles=None, variations=None, aspect_ratio=
         logger.error("GEMINI_API_KEY not found in environment or arguments.")
         sys.exit(1)
 
+    # Resolve model string
+    target_model = MODEL_MAPPING.get(model, model)
+    
     try:
         client = genai.Client(api_key=api_key, http_options={'api_version': 'v1alpha'})
     except Exception as e:
@@ -46,13 +56,13 @@ def generate_images(prompt, count=1, styles=None, variations=None, aspect_ratio=
     if variations:
         enhanced_prompt += f" With variations: {', '.join(variations)}."
 
-    logger.info(f"Generating {count} image(s) using model {model}...")
+    logger.info(f"Generating {count} image(s) using model {model} ({target_model})...")
     logger.debug(f"Prompt: {enhanced_prompt}")
     logger.debug(f"Aspect Ratio: {aspect_ratio}")
 
     try:
         response = client.models.generate_images(
-            model=model,
+            model=target_model,
             prompt=enhanced_prompt,
             config=types.GenerateImagesConfig(
                 number_of_images=count,
@@ -94,7 +104,7 @@ def main():
     parser.add_argument("--variations", nargs="+", help="Variation types to implement.")
     parser.add_argument("--aspect_ratio", default="2:3", help="Aspect ratio (1:1, 9:16, 16:9, 4:3, 3:4).")
     parser.add_argument("--output", default="nanobanana-output", help="Output directory for generated images.")
-    parser.add_argument("--model", default="imagen-4.0-generate-001", help="The model version to use.")
+    parser.add_argument("--model", default="nanabanana", choices=["nanabanana", "nanabanana-pro"], help="The model version to use (default: nanabanana).")
     parser.add_argument("--api-key", help="Gemini API Key.")
     parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     parser.add_argument("--verbose", action="store_true", help="Enable debug logging.")
