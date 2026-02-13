@@ -145,7 +145,7 @@ def main():
     gen_parser.add_argument("--api-key")
 
     # Batch Commands
-    batch_parser = subparsers.add_parser("batch", help="Submit a batch job (50% Discount, Asynchronous)")
+    batch_parser = subparsers.add_parser("batch", help="Submit a batch job (50%% Discount, Asynchronous)")
     batch_parser.add_argument("file", help="File with one prompt per line.")
     batch_parser.add_argument("--model", default="gemini-2.5-flash-image")
     batch_parser.add_argument("--api-key")
