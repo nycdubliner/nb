@@ -5,7 +5,7 @@ import sys
 import logging
 from pathlib import Path
 
-__version__ = "0.4.0"
+__version__ = "0.5.0"
 
 # Setup logging
 logging.basicConfig(
@@ -22,10 +22,10 @@ except ImportError:
     logger.error("Missing dependencies. Please ensure 'google-genai' is installed.")
     sys.exit(1)
 
-def generate_images(prompt, count=1, styles=None, variations=None, aspect_ratio="2:3", output_dir="nanobanana-output", model="nano-banana-pro-preview", api_key=None):
+def generate_images(prompt, count=1, styles=None, variations=None, aspect_ratio="2:3", output_dir="nanobanana-output", model="nanabanana-pro", api_key=None):
     """
     Core function to generate images using the specified model.
-    Defaults to 'nano-banana-pro-preview'.
+    Defaults to 'nanabanana-pro'.
     """
     if not api_key:
         api_key = os.environ.get("GEMINI_API_KEY")
@@ -99,7 +99,7 @@ def main():
     parser.add_argument("--variations", nargs="+", help="Variation types to implement.")
     parser.add_argument("--aspect_ratio", default="2:3", help="Aspect ratio (1:1, 9:16, 16:9, 4:3, 3:4).")
     parser.add_argument("--output", default="nanobanana-output", help="Output directory.")
-    parser.add_argument("--model", default="nano-banana-pro-preview", help="Google model name (default: nano-banana-pro-preview).")
+    parser.add_argument("--model", default="nanabanana-pro", help="Google model name (default: nanabanana-pro).")
     parser.add_argument("--api-key", help="Gemini API Key.")
     parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     parser.add_argument("--verbose", action="store_true", help="Enable debug logging.")

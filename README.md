@@ -3,13 +3,13 @@
 [![CI](https://github.com/nycdubliner/nb/actions/workflows/ci.yml/badge.svg)](https://github.com/nycdubliner/nb/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**nb** is a dedicated CLI tool for Google's official GenAI Image Generation models (e.g., \`nano-banana-pro-preview\`). 
+**nb** is a dedicated CLI tool for Google's official GenAI Image Generation models (e.g., \`nanabanana\` and \`nanabanana-pro\`). 
 
 It provides a streamlined interface for the [Google Gemini Image Generation API](https://ai.google.dev/gemini-api/docs/image-generation), allowing for rapid iteration on prompts, styles, and aspect ratios directly from the terminal.
 
 ## ✨ Features
 
-- **Official Model Support:** Explicitly designed for Google's \`nano-banana\` family of models.
+- **Official Model Support:** Explicitly designed for Google's \`nanabanana\` family of models.
 - **Prompt-to-Image:** Generate high-fidelity images from simple text descriptions.
 - **Batch Generation:** Create multiple variations in a single command.
 - **Style Presets:** Easily apply artistic styles and variations.
@@ -47,7 +47,7 @@ Alternatively, you can provide the key directly via the \`--api-key\` flag.
 
 ## 🛠 Usage
 
-### Basic Prompt (using default 'nano-banana-pro-preview')
+### Basic Prompt (using default 'nanabanana-pro')
 \`\`\`bash
 nb "A neon-noir cityscape in the rain"
 \`\`\`
@@ -67,7 +67,7 @@ nb "Cybernetic forest" --count 4 --aspect_ratio 16:9 --styles "cyberpunk"
 | \`--styles\` | Space-separated list of artistic styles. | None |
 | \`--variations\` | Space-separated list of variation types. | None |
 | \`--output\` | Directory to save generated images. | nanobanana-output |
-| \`--model\` | The Google model name. | nano-banana-pro-preview |
+| \`--model\` | The Google model name. | nanabanana-pro |
 | \`--api-key\` | Explicitly provide the Gemini API key. | None |
 | \`--version\` | Show the version and exit. | - |
 
